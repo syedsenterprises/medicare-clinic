@@ -1,59 +1,65 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>MediCare Clinic — Book an Appointment</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#f4f9fb;color:#102a43;font-family:'Inter',sans-serif}
-.top{background:#0b5f7a;color:#fff;padding:8px;text-align:center;font-size:13px}
-header{max-width:1080px;margin:0 auto;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-family:'Sora',sans-serif;font-size:26px;color:#0b5f7a}.logo span{color:#12a594}
-.hero{max-width:1080px;margin:8px auto;padding:20px 22px;display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
-.hero h1{font-family:'Sora',sans-serif;font-size:44px;line-height:1.1;margin:0 0 12px}
-.hero p{color:#486581;font-size:17px}
-form,.book{background:#fff;border:1px solid #d9e8ee;border-radius:18px;padding:22px;box-shadow:0 16px 40px rgba(11,95,122,.10)}
-input,select{width:100%;padding:12px;margin:6px 0 12px;border:1px solid #cbdde6;border-radius:10px;font-size:15px}
-button{background:#0b5f7a;color:#fff;border:0;padding:13px;border-radius:10px;font-weight:600;font-size:15px;width:100%;cursor:pointer}
-.ok{background:#e2f7f0;color:#0b5f4a;padding:12px;border-radius:10px;margin-top:12px;display:none}
-.stats{max-width:1080px;margin:10px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 22px}
-.stat{background:#fff;border:1px solid #d9e8ee;border-radius:14px;padding:18px;text-align:center}.stat b{font-size:28px;color:#0b5f7a;display:block}
-h2{font-family:'Sora',sans-serif;text-align:center;margin:34px 0 6px}
-.sub{text-align:center;color:#486581;margin:0 0 18px}
-.svc,.docs{max-width:1080px;margin:0 auto;padding:0 22px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{background:#fff;border:1px solid #d9e8ee;border-radius:16px;padding:20px}
-.ico{width:48px;height:48px;border-radius:12px;background:#e0f2f1;color:#0b5f7a;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;margin-bottom:12px}
-.doc{background:#fff;border:1px solid #d9e8ee;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:center}
-.av{width:56px;height:56px;border-radius:50%;background:#0b5f7a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;flex:none}
-.blist{max-width:720px;margin:0 auto;padding:0 22px}
-.bk{background:#fff;border:1px solid #d9e8ee;border-radius:14px;padding:16px;margin:10px 0;display:flex;justify-content:space-between;gap:12px;align-items:center}
-.bk button{width:auto;padding:8px 14px;background:#b42318}
-footer{background:#0b5f7a;color:#cfe8ef;text-align:center;padding:22px;margin-top:34px;font-size:13px}
-@media(max-width:700px){.hero,.stats,.svc,.docs{grid-template-columns:1fr}.hero h1{font-size:34px}}
-</style></head><body>
-<div class="top">Open Mon–Sat, 8am–8pm · Emergency line: (555) 014-2200</div>
-<header><div class="logo">Medi<span>Care</span></div><div><b>★ 4.9</b> · 2,300+ reviews</div></header>
-<section class="hero"><div><h1>Good care starts with a doctor who listens.</h1><p>Same-week appointments, honest pricing, and doctors who explain before they prescribe. Book in under a minute — your bookings are saved in this browser.</p></div>
-<form onsubmit="book(event)"><h3 style="margin:0 0 10px;font-family:'Sora',sans-serif">Book an appointment</h3>
-<input id="bname" required placeholder="Your full name"/><input id="bphone" required placeholder="Phone number"/>
-<select id="bsvc"><option>General consultation</option><option>Pediatrics</option><option>Cardiology</option><option>Dermatology</option><option>Dental</option></select>
-<select id="bdoc"><option>Dr. Anita Rao</option><option>Dr. David Kim</option><option>Dr. Sara Malik</option><option>First available</option></select>
-<input id="bdate" type="date" required/><select id="btime"><option>09:00</option><option>10:30</option><option>12:00</option><option>15:00</option><option>16:30</option><option>18:00</option></select>
-<button>Request appointment →</button><div class="ok" id="ok"></div></form></section>
-<section class="stats"><div class="stat"><b>15+</b>Years serving</div><div class="stat"><b>40k</b>Patients treated</div><div class="stat"><b>12</b>Specialists</div><div class="stat"><b>4.9★</b>Patient rating</div></section>
-<h2>Your bookings</h2><p class="sub">Saved in this browser. Cancel anytime.</p>
-<div class="blist" id="blist"></div>
-<h2>What we treat</h2><p class="sub">Common visits, handled properly.</p>
-<section class="svc">
-<div class="card"><div class="ico">GP</div><h3>General practice</h3><p>Checkups, fevers, infections, chronic care and referrals.</p></div>
-<div class="card"><div class="ico">♥</div><h3>Cardiology</h3><p>Heart screening, ECG, blood pressure and risk plans.</p></div>
-<div class="card"><div class="ico">◐</div><h3>Dermatology</h3><p>Skin, hair and allergy care with same-week slots.</p></div>
-<div class="card"><div class="ico">✚</div><h3>Pediatrics</h3><p>Gentle care for children, vaccinations and growth checks.</p></div>
-<div class="card"><div class="ico">⌒</div><h3>Dental</h3><p>Cleaning, fillings, whitening and pain relief.</p></div>
-<div class="card"><div class="ico">⬢</div><h3>Diagnostics</h3><p>In-house lab and imaging with results in 24 hours.</p></div>
-</section>
-<footer>MediCare Clinic · Static site — bookings are saved in your browser (localStorage). No booking is sent to a clinic; connect a booking system to take real appointments.</footer>
+<title>Care that listens — MediCare Clinic</title>
+<meta name="description" content="MediCare Clinic — general practice, pediatrics and specialists with same-day appointments. Meet the doctors and book online."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://syedsenterprises.github.io/medicare-clinic/"/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content="MediCare Clinic"/>
+<meta property="og:title" content="Care that listens — MediCare Clinic"/><meta property="og:description" content="MediCare Clinic — general practice, pediatrics and specialists with same-day appointments. Meet the doctors and book online."/><meta property="og:url" content="https://syedsenterprises.github.io/medicare-clinic/"/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Care that listens — MediCare Clinic"/><meta name="twitter:description" content="MediCare Clinic — general practice, pediatrics and specialists with same-day appointments. Meet the doctors and book online."/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://syedsenterprises.github.io/medicare-clinic/#org", "name": "MediCare Clinic", "url": "https://syedsenterprises.github.io/medicare-clinic/"}, {"@type": "WebSite", "@id": "https://syedsenterprises.github.io/medicare-clinic/#site", "url": "https://syedsenterprises.github.io/medicare-clinic/", "name": "MediCare Clinic", "publisher": {"@id": "https://syedsenterprises.github.io/medicare-clinic/#org"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://syedsenterprises.github.io/medicare-clinic/"}, {"@type": "ListItem", "position": 2, "name": "Care that listens", "item": "https://syedsenterprises.github.io/medicare-clinic/"}]}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fraunces:wght@700&display=swap" rel="stylesheet"/>
+<style>*{box-sizing:border-box}body{margin:0;background:#f2f7fb;color:#14232e;font-family:'Inter',sans-serif}
+a{color:#0e7490}header{max-width:1100px;margin:0 auto;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-family:'Fraunces',serif;font-size:26px;color:#0e7490;text-decoration:none}.logo span{color:#f59e0b}
+nav a{margin:0 10px;text-decoration:none;color:#14232e;font-weight:500}nav a.on{color:#f59e0b;border-bottom:2px solid #f59e0b}
+.wrap{max-width:1100px;margin:0 auto;padding:10px 22px 30px}
+h1{font-family:'Fraunces',serif;font-size:42px;line-height:1.1}h2{font-family:'Fraunces',serif;font-size:30px}h3{font-size:19px}
+.btn{background:#0e7490;color:#fff;border:0;padding:12px 22px;border-radius:999px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.btn2{background:#f59e0b;color:#fff;border:0;padding:11px 20px;border-radius:999px;font-weight:700;cursor:pointer}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:#ffffff;border:1px solid #d5e2ec;border-radius:16px;padding:20px}
+.card p{color:#4c6474}input,select,textarea{width:100%;padding:12px;margin:6px 0;border:1px solid #d5e2ec;border-radius:10px;font-size:15px;font-family:inherit}
+.ok{background:#e6f4ea;color:#1e5c2e;padding:12px;border-radius:10px;margin-top:12px;display:none}
+footer{max-width:1100px;margin:20px auto;padding:20px 22px;border-top:1px solid #d5e2ec;color:#4c6474;font-size:13px;text-align:center}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
+.tag{color:#4c6474;font-size:17px}
+.chatbtn{position:fixed;right:20px;bottom:20px;width:60px;height:60px;border-radius:50%;background:#f59e0b;color:#fff;border:0;font-size:26px;cursor:pointer;box-shadow:0 10px 26px rgba(0,0,0,.3);z-index:60}
+.chatpanel{position:fixed;right:20px;bottom:92px;width:360px;max-width:92vw;height:480px;max-height:70vh;background:#fff;color:#222;border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.3);display:none;flex-direction:column;overflow:hidden;z-index:60}
+.chatpanel.open{display:flex}
+.chathead{background:#0e7490;color:#fff;padding:14px 16px}.chathead b{font-size:16px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#4ade80;margin-right:6px}
+.chatmsgs{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:85%;padding:10px 13px;border-radius:14px;font-size:14px;line-height:1.45}
+.msg.bot{background:#f1f5f9;align-self:flex-start}.msg.user{background:#0e7490;color:#fff;align-self:flex-end}
+.chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 12px 10px}.chips button{background:#f1f5f9;border:1px solid #e2e8f0;padding:6px 11px;border-radius:999px;cursor:pointer;font-size:12px}
+.chatin{display:flex;gap:8px;padding:10px;border-top:1px solid #eee}.chatin input{margin:0}.chatin button{background:#f59e0b;color:#fff;border:0;padding:11px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,90px);background:#1f2937;color:#fff;padding:15px 20px;border-radius:999px;font-weight:600;box-shadow:0 12px 30px rgba(0,0,0,.35);transition:.3s;z-index:70;opacity:0;pointer-events:none;max-width:92vw;text-align:center}
+.toast.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+.toast button{background:#f59e0b;color:#fff;border:0;padding:7px 14px;border-radius:999px;margin-left:12px;cursor:pointer;font-weight:700}
+.pulse{animation:pulse .5s}@keyframes pulse{50%{transform:scale(1.12)}}
+.drawer{position:fixed;top:0;right:0;width:360px;max-width:92vw;height:100%;background:#fff;color:#222;box-shadow:-8px 0 30px rgba(0,0,0,.2);padding:22px;overflow:auto;transform:translateX(110%);transition:.25s;z-index:65}
+.drawer.open{transform:none}
+.line{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid #eee;align-items:center}
+.qty button{width:26px;height:26px;border-radius:50%;border:1px solid #ccc;background:#fff;cursor:pointer;font-weight:700}
+@media(max-width:700px){.grid3,.grid2,.hero{grid-template-columns:1fr}h1{font-size:32px}}</style></head><body>
+<header><a class="logo" href="index.html">🏥 Medi<span>Care</span></a><nav><a href="index.html" class="on">Home</a><a href="doctors.html" class="">Doctors</a><a href="services.html" class="">Services</a><a href="book.html" class="">Book</a><a href="contact.html" class="">Contact</a></nav></header>
+<main class="wrap"><section class="hero"><div><p style="color:#0e7490;font-weight:700">GENERAL PRACTICE · PEDIATRICS · SPECIALISTS</p><h1>Good healthcare starts with listening.</h1><p class="tag">Six doctors, same-day appointments, and test results explained in plain words.</p><p><a class="btn" href="book.html">Book an appointment →</a> <a class="btn2" href="doctors.html">Meet the doctors</a></p></div><div class="card"><h3>📊 At a glance</h3><p><b>6</b> doctors · <b>12,000+</b> patients seen · <b>4.9/5</b> average rating · <b>Same-day</b> appointments when slots allow.</p><p>All figures on this page are sample data for a demo site.</p></div></section>
+<h2>Popular services</h2><div class="grid3"><div class="card"><h3>General consultation</h3><p>$40 · 30 min</p></div><div class="card"><h3>Child health check</h3><p>$55 · 30 min</p></div><div class="card"><h3>Heart screening</h3><p>$120 · 60 min</p></div></div></main>
+<footer>MediCare Clinic · Care that listens. Demo site — sample doctors and bookings, no real appointments.<br/><a href="index.html">Home</a> · <a href="doctors.html">Doctors</a> · <a href="services.html">Services</a> · <a href="book.html">Book</a> · <a href="contact.html">Contact</a></footer>
+<button class="chatbtn" onclick="toggleChat()">💬</button><div class="chatpanel" id="chatpanel"><div class="chathead"><span class="dot"></span><b>Nurse Ada</b><span style="opacity:.8"> · Online · Demo assistant, replies instantly</span><button style="float:right;background:none;border:0;color:#fff;font-size:18px;cursor:pointer" onclick="toggleChat()">×</button></div><div class="chatmsgs" id="chatmsgs"></div><div class="chips"><button onclick="chip(&quot;Book an appointment&quot;)">Book an appointment</button><button onclick="chip(&quot;Which doctor?&quot;)">Which doctor?</button><button onclick="chip(&quot;Opening hours&quot;)">Opening hours</button></div><div class="chatin"><input id="chatinput" placeholder="Ask anything…" onkeydown="if(event.key==='Enter')sendChat()"/><button onclick="sendChat()">Send</button></div></div>
+<script>const BOT={"name": "Nurse Ada", "greeting": "Hi, I am Ada, the MediCare demo assistant. Ask about doctors, services or booking.", "chips": ["Book an appointment", "Which doctor?", "Opening hours"], "rules": [{"k": ["book", "appointment"], "a": "Use the Book page — pick a service, a doctor, a date and a time. You will get a demo reference like MC-4821."}, {"k": ["doctor"], "a": "Six doctors are listed on the Doctors page with specialties, experience and languages."}, {"k": ["hour", "open"], "a": "Monday to Saturday, 8am to 8pm. Sundays 9am to 1pm for urgent care in this demo."}, {"k": ["price", "cost", "fee"], "a": "Consultations run $40 to $120 depending on specialty — see the Services page."}, {"k": ["emergency"], "a": "This is a demo site. For a real emergency, call your local emergency number immediately."}], "fallback": "I am a demo assistant. I can help with prices, hours, bookings and services. For a real person, use the contact page."};
+function botReply(q){q=q.toLowerCase();for(let r of BOT.rules){if(r.k.some(k=>q.includes(k)))return r.a}return BOT.fallback}
+let greeted=false;
+function toggleChat(){let p=document.getElementById('chatpanel');p.classList.toggle('open');if(p.classList.contains('open')&&!greeted){greeted=true;addMsg('bot',BOT.greeting)}}
+function addMsg(who,text){let m=document.createElement('div');m.className='msg '+who;m.textContent=text;document.getElementById('chatmsgs').appendChild(m);document.getElementById('chatmsgs').scrollTop=99999}
+function sendChat(text){let inp=document.getElementById('chatinput');let q=(text||inp.value).trim();if(!q)return;addMsg('user',q);inp.value='';let t=document.createElement('div');t.className='msg bot';t.id='typing';t.textContent='Typing…';document.getElementById('chatmsgs').appendChild(t);setTimeout(()=>{t.remove();addMsg('bot',botReply(q))},700)}
+function chip(q){document.getElementById('chatinput').value=q;sendChat()}</script>
 <script>
-let B=JSON.parse(localStorage.getItem('mc_bookings')||'[]');
-function save(){localStorage.setItem('mc_bookings',JSON.stringify(B));list()}
-function list(){document.getElementById('blist').innerHTML=B.length?B.map((b,i)=>`<div class="bk"><span><b>${b.ref}</b> — ${b.svc} with ${b.doc}<br/>${b.date} at ${b.time} · ${b.name}</span><button onclick="B.splice(${i},1);save()">Cancel</button></div>`).join(''):'<p style="text-align:center;color:#486581">No bookings yet — use the form above.</p>'}
-function book(e){e.preventDefault();let b={ref:'MC-'+Math.floor(1000+Math.random()*9000),name:document.getElementById('bname').value,svc:document.getElementById('bsvc').value,doc:document.getElementById('bdoc').value,date:document.getElementById('bdate').value,time:document.getElementById('btime').value};B.push(b);save();let ok=document.getElementById('ok');ok.style.display='block';ok.innerHTML=`Booked! Reference <b>${b.ref}</b> — ${b.svc} with ${b.doc} on ${b.date} at ${b.time}. The clinic will call ${b.name} to confirm. (Demo: no real booking sent.)`}
-list();
-</script></body></html>
+function qs(){return new URLSearchParams(location.search)}
+function prefill(){let d=document.getElementById('doc');if(d&&qs().get('doctor'))d.value=qs().get('doctor');let s=document.getElementById('svc');if(s&&qs().get('service'))s.value=qs().get('service')}
+function bookIt(ev){ev.preventDefault();let b={name:document.getElementById('nm').value,svc:document.getElementById('svc').value,doc:document.getElementById('doc').value,date:document.getElementById('dt').value,time:document.getElementById('tm').value,ref:'MC-'+Math.floor(1000+Math.random()*9000)};let all=JSON.parse(localStorage.getItem('mc_bookings')||'[]');all.push(b);localStorage.setItem('mc_bookings',JSON.stringify(all));document.getElementById('ok').innerHTML='Booking confirmed! Reference <b>'+b.ref+'</b>. Demo only — no real appointment is made.';document.getElementById('ok').style.display='block';showList()}
+function showList(){let el=document.getElementById('mylist');if(!el)return;let all=JSON.parse(localStorage.getItem('mc_bookings')||'[]');el.innerHTML=all.length?all.map((b,i)=>'<div class="line"><span>'+b.svc+' with '+b.doc+' · '+b.date+' '+b.time+' · '+b.ref+'</span><button class="btn2" onclick="cancelB('+i+')">Cancel</button></div>').join(''):'<p>No bookings yet.</p>'}
+function cancelB(i){let all=JSON.parse(localStorage.getItem('mc_bookings')||'[]');all.splice(i,1);localStorage.setItem('mc_bookings',JSON.stringify(all));showList()}
+prefill();showList();
+</script>
+
+</body></html>

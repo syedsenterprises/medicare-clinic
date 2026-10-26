@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://syedsenterprises.github.io/medicare-clinic/sitemap.xml
